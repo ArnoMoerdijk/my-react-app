@@ -1,24 +1,11 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
+import { Routes, Route, Link} from 'react-router-dom';
+import { HomePage, CounterButtonPage, PeopleListPage } from './pages';
 import { CongradulationsMessage } from './CongradulationsMessage';
 import { CounterButton } from './CounterButton';
 import { Greeting } from './Greeting';
 import { PeopleList } from './PeopleList';
 import './App.css';
-
-const people = [{
-  name: "John",
-  age: 40,
-  hairColor: "brown",
-}, {
-  name: "Helgo",
-  age: 25,
-  hairColor: "red",
-}, {
-  name: "Dwayne",
-  age: 55,
-  hairColor: "blonde",
-}];
 
 function App() {
   const [numberOfClicks, setNumberOfKlicks] = useState(0);
@@ -28,12 +15,13 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        {hideMessage
-          ? null
-          :<CongradulationsMessage numberOfClicks={numberOfClicks} treshold={10} onHide={() => setHideMessage(true)}/>}
-        <CounterButton onIncrement={increment} numberOfClicks={numberOfClicks}/>
-      </header>
+        <Link to="/counter">Go to Counter Page</Link>
+        <Link to="/people-list">Go to People List Page</Link>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+            <Route path="counter" element={<CounterButtonPage />} />
+            <Route path="people-list" element={<PeopleListPage />} />
+        </Routes>
     </div>
   );
 }
