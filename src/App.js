@@ -9,10 +9,8 @@ import {
   ControlledFormPage,
   UncontrolledFormPage
 } from './pages';
-import { CongradulationsMessage } from './CongradulationsMessage';
-import { CounterButton } from './CounterButton';
-import { Greeting } from './Greeting';
-import { PeopleList } from './PeopleList';
+import { NavBar } from './Navbar';
+import { FormsNavBar} from './FormsNavBar';
 import './App.css';
 
 function App() {
@@ -23,17 +21,20 @@ function App() {
 
   return (
     <div className="App">
-        <Link to="/counter">Go to Counter Page</Link>
-        <Link to="/people-list">Go to People List Page</Link>
+      <NavBar />
+      <div className="App-Header">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="counter" element={<CounterButtonPage />} />
           <Route path="people-list" element={<PeopleListPage />} />
-          <Route path="controlled" element={<ControlledFormPage />} />
-          <Route path="uncontrolled" element={<UncontrolledFormPage />} />
+          <Route path="forms" element={<FormsNavBar />} >
+            <Route path="controlled" element={<ControlledFormPage />} />
+            <Route path="uncontrolled" element={<UncontrolledFormPage />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
           <Route path="protected" element={<ProtectedPage />} />
         </Routes>
+      </div>
     </div>
   );
 }

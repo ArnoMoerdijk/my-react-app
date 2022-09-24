@@ -41,4 +41,4 @@ export const ControlledFormPage = () => {
             }}>Submit</button>
         </form>
     )
-}
+};
