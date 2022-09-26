@@ -10,8 +10,10 @@ import {
   UncontrolledFormPage,
   UserProfilePage
 } from './pages';
+import { UserDataLoader } from './UserDataLoader';
 import { NavBar } from './Navbar';
 import { FormsNavBar} from './FormsNavBar';
+import { ThemeContext } from './ThemeContext';
 import './App.css';
 
 function App() {
@@ -21,23 +23,25 @@ function App() {
   const increment = () => setNumberOfKlicks(numberOfClicks + 1);
 
   return (
-    <div className="App">
-      <NavBar />
-      <div className="App-Header">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="counter" element={<CounterButtonPage />} />
-          <Route path="people-list" element={<PeopleListPage />} />
-          <Route path='user' element={<UserProfilePage />} />
-          <Route path="forms" element={<FormsNavBar />} >
-            <Route path="controlled" element={<ControlledFormPage />} />
-            <Route path="uncontrolled" element={<UncontrolledFormPage />} />
-          </Route>
-          <Route path="*" element={<NotFoundPage />} />
-          <Route path="protected" element={<ProtectedPage />} />
-        </Routes>
+    <ThemeContext.Provider value='dark'>
+      <div className="App">
+        <NavBar />
+        <div className="App-Header">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="counter" element={<CounterButtonPage />} />
+            <Route path="people-list" element={<PeopleListPage />} />
+            <Route path='user' element={<UserProfilePage />} />
+            <Route path="forms" element={<FormsNavBar />} >
+              <Route path="controlled" element={<ControlledFormPage />} />
+              <Route path="uncontrolled" element={<UncontrolledFormPage />} />
+            </Route>
+            <Route path="*" element={<NotFoundPage />} />
+            <Route path="protected" element={<ProtectedPage />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </ThemeContext.Provider>
   );
 }
 
